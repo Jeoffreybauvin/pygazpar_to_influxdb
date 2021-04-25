@@ -55,7 +55,7 @@ data = client.data()
 jsonInflux = []
 
 for measure in data:
-    date_time_obj = datetime.datetime.strptime(measure['date'], '%d/%m/%Y')
+    date_time_obj = datetime.datetime.strptime(measure['time_period'], '%d/%m/%Y')
 
     jsonInflux.append({
         "measurement": "gazpar_consumption_per_day",
