@@ -10,5 +10,5 @@ This repository uses [PyGazpar](https://github.com/ssenart/PyGazpar) to retrieve
 There is a Docker image ready to use : https://hub.docker.com/repository/docker/pbranly/pygazpar_test
 
 ```bash
-docker run -ti  --rm -v /dev/shm:/dev/shm  pygazpar:latest  pygazpar_to_influxdb.py --influxdb-host 192.168.1.2 --influxdb-port 8086  --influxdb-username gazpar --influxdb-password PASSWORD  --influxdb-database gazpar  --pygazpar-login 'mail@gmail.com' --pygazpar-password 'password'
+docker run -ti  --rm -v /dev/shm:/dev/shm  pbranly/pygazpar_test:0.01  pygazpar_to_influxdb.py --influxdb-host 192.168.1.2 --influxdb-port 8086  --influxdb-username gazpar --influxdb-password PASSWORD  --influxdb-database gazpar  --pygazpar-login 'mail@gmail.com' --pygazpar-password 'password'
 ```
