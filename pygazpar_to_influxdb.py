@@ -67,8 +67,8 @@ for measure in data:
             "start_index_m3": measure['start_index_m3'],
             "end_index_m3": measure['end_index_m3'],
             "energy_kwh": measure['energy_kwh'],
-            "converter_factor": float(measure['converter_factor'].replace(',', '.')),
-            "local_temperature": float(measure['local_temperature'].replace(',', '.')),
+            "converter_factor_kwh/m3": float(measure['converter_factor_kwh/m3'].replace(',', '.')),
+            "temperature_degC": float(measure['temperature_degC'].replace(',', '.')),
             "type": measure['type'],
         }
     })
