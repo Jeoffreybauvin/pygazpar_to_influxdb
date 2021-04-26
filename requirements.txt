@@ -1,2 +1,2 @@
 influxdb==5.3.1
-pygazpar==0.1.26
+pygazpar==0.2.0
