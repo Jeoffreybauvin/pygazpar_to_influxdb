@@ -26,7 +26,7 @@ parser.add_argument("-v", "--verbose", dest="verbose_count", action="count", def
 #parser.add_argument("--pygazpar-login", dest="PYGAZPAR_LOGIN", help="pygazpar login")
 #parser.add_argument("--pygazpar-password", dest="PYGAZPAR_PASSWORD", help="pygazpar password")
 
-#args = parser.parse_args()
+args = parser.parse_args()
 log = logging.getLogger()
 logging.basicConfig(stream=sys.stderr, level=logging.WARNING,
                     format='%(name)s (%(levelname)s): %(message)s')
