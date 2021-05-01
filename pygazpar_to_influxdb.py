@@ -18,7 +18,6 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument("--source", help="Source ('json' file must be named data.json. 'pygazpar' asks to pygazpar to retrieve data)", dest="SOURCE", default="pygazpar")
 parser.add_argument("--influxdb2-host", help="InfluxDB host", dest="INFLUXDB_HOST", default="influxdb-api.loc")
-parser.add_argument("--influxdb2-port", help="InfluxDB port", dest="INFLUXDB_PORT", default=8086)
 parser.add_argument("--influxdb2-token", help="InfluxDB token", dest="INFLUXDB_TOKEN", default="xxxxx")
 parser.add_argument("--influxdb2-bucket", help="InfluxDB bucket", dest="INFLUXDB_BUCKET", default="gazpar")
 parser.add_argument("--influxdb2-org", help="InfluxDB org", dest="INFLUXDB_ORG", default="home")
@@ -33,7 +32,7 @@ logging.basicConfig(stream=sys.stderr, level=logging.WARNING,
 log.setLevel(max(3 - args.verbose_count, 0) * 10)
 
 influx_client = InfluxDBClient(
-    host=args.INFLUXDB_HOST:8087,
+    host=args.INFLUXDB_HOST,
     token=args.INFLUXDB_TOKEN,
     org=args.INFLUXDB_ORG,
 )
