@@ -2,7 +2,7 @@
 
 import sys
 import json
-from influxdb import InfluxDBClient
+from influxdb-client import InfluxDBClient
 import datetime
 import argparse
 import logging
