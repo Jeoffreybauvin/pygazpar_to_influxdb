@@ -1,2 +1,2 @@
-influxdb-client
+influxdb-client[ciso]
 pygazpar==0.2.0
