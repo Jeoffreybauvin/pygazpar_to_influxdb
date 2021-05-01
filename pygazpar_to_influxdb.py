@@ -14,6 +14,8 @@ import pygazpar
 
 parser = argparse.ArgumentParser()
 
+#
+
 parser.add_argument("--source", help="Source ('json' file must be named data.json. 'pygazpar' asks to pygazpar to retrieve data)", dest="SOURCE", default="pygazpar")
 parser.add_argument("--influxdb-host", help="InfluxDB host", dest="INFLUXDB_HOST", default="influxdb-api.loc")
 parser.add_argument("--influxdb-port", help="InfluxDB port", dest="INFLUXDB_PORT", default=8086)
