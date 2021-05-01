@@ -17,11 +17,12 @@ parser = argparse.ArgumentParser()
 #
 
 parser.add_argument("--source", help="Source ('json' file must be named data.json. 'pygazpar' asks to pygazpar to retrieve data)", dest="SOURCE", default="pygazpar")
-parser.add_argument("--influxdb-host", help="InfluxDB host", dest="INFLUXDB_HOST", default="influxdb-api.loc")
-parser.add_argument("--influxdb-port", help="InfluxDB port", dest="INFLUXDB_PORT", default=8086)
-parser.add_argument("--influxdb-username", help="InfluxDB username", dest="INFLUXDB_USERNAME", default="username")
-parser.add_argument("--influxdb-password", help="InfluxDB password", dest="INFLUXDB_PASSWORD", default="password")
-parser.add_argument("--influxdb-database", help="InfluxDB database", dest="INFLUXDB_DATABASE", default="enedis")
+parser.add_argument("--influxdb2-host", help="InfluxDB host", dest="INFLUXDB_HOST", default="influxdb-api.loc")
+parser.add_argument("--influxdb2-port", help="InfluxDB port", dest="INFLUXDB_PORT", default=8086)
+# parser.add_argument("--influxdb-username", help="InfluxDB username", dest="INFLUXDB_USERNAME", default="username")
+# parser.add_argument("--influxdb-password", help="InfluxDB password", dest="INFLUXDB_PASSWORD", default="password")
+parser.add_argument("--influxdb2-bucket", help="InfluxDB bucket", dest="INFLUXDB_BUCKET", default="gazpar")
+parser.add_argument("--influxdb2-org", help="InfluxDB org", dest="INFLUXDB_ORG", default="home")
 parser.add_argument("-v", "--verbose", dest="verbose_count", action="count", default=0, help="increases log verbosity")
 parser.add_argument("--pygazpar-login", dest="PYGAZPAR_LOGIN", help="pygazpar login")
 parser.add_argument("--pygazpar-password", dest="PYGAZPAR_PASSWORD", help="pygazpar password")
@@ -35,9 +36,8 @@ log.setLevel(max(3 - args.verbose_count, 0) * 10)
 influx_client = InfluxDBClient(
     host=args.INFLUXDB_HOST,
     port=args.INFLUXDB_PORT,
-    username=args.INFLUXDB_USERNAME,
-    password=args.INFLUXDB_PASSWORD,
-    database=args.INFLUXDB_DATABASE,
+    database=args.INFLUXDB_BUCKET,
+    org=args.INFLUXDB_ORG
     timeout=5,
     retries=2,
 )
