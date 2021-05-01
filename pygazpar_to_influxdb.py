@@ -42,7 +42,7 @@ log.setLevel(max(3 - args.verbose_count, 0) * 10)
 from influxdb_client import InfluxDBClient, Point
 from influxdb_client.client.write_api import SYNCHRONOUS
 
-bucket = "gazpar"
+bucket = "gazpar/autogen"
 
 client = InfluxDBClient(url="http://192.168.1.8:8087", token="dh7nwLEm6Oky80aWPW2zcP31I6lBJ4Rq9MfeMv46011us7lExORlcvZIaV2XF6COEdBEFKcgOtUJsjr_JGaKNg==", org="home")
 
