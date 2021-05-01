@@ -40,8 +40,6 @@ influx_client = InfluxDBClient(
     token=args.INFLUXDB_TOKEN,
     database=args.INFLUXDB_BUCKET,
     org=args.INFLUXDB_ORG,
-    timeout=5,
-    retries=2,
 )
 
 client = pygazpar.Client(args.PYGAZPAR_LOGIN,
