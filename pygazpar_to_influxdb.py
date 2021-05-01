@@ -33,8 +33,7 @@ logging.basicConfig(stream=sys.stderr, level=logging.WARNING,
 log.setLevel(max(3 - args.verbose_count, 0) * 10)
 
 influx_client = InfluxDBClient(
-    host=args.INFLUXDB_HOST,
-    port=args.INFLUXDB_PORT,
+    host=args.INFLUXDB_HOST:8087,
     token=args.INFLUXDB_TOKEN,
     org=args.INFLUXDB_ORG,
 )
