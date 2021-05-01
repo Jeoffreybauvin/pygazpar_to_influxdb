@@ -13,7 +13,7 @@ from decimal import Decimal
 import pygazpar
 
 
-#parser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser()
 
 #
 
