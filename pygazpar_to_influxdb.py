@@ -20,8 +20,6 @@ parser.add_argument("--source", help="Source ('json' file must be named data.jso
 parser.add_argument("--influxdb2-host", help="InfluxDB host", dest="INFLUXDB_HOST", default="influxdb-api.loc")
 parser.add_argument("--influxdb2-port", help="InfluxDB port", dest="INFLUXDB_PORT", default=8086)
 parser.add_argument("--influxdb2-token", help="InfluxDB token", dest="INFLUXDB_TOKEN", default="xxxxx")
-# parser.add_argument("--influxdb-username", help="InfluxDB username", dest="INFLUXDB_USERNAME", default="username")
-# parser.add_argument("--influxdb-password", help="InfluxDB password", dest="INFLUXDB_PASSWORD", default="password")
 parser.add_argument("--influxdb2-bucket", help="InfluxDB bucket", dest="INFLUXDB_BUCKET", default="gazpar")
 parser.add_argument("--influxdb2-org", help="InfluxDB org", dest="INFLUXDB_ORG", default="home")
 parser.add_argument("-v", "--verbose", dest="verbose_count", action="count", default=0, help="increases log verbosity")
@@ -38,7 +36,6 @@ influx_client = InfluxDBClient(
     host=args.INFLUXDB_HOST,
     port=args.INFLUXDB_PORT,
     token=args.INFLUXDB_TOKEN,
-    database=args.INFLUXDB_BUCKET,
     org=args.INFLUXDB_ORG,
 )
 
