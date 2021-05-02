@@ -46,7 +46,7 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 bucket = "args.INFLUXDB_BUCKET"
 
 # client = InfluxDBClient(url="http://192.168.1.8:8087", token="dh7nwLEm6Oky80aWPW2zcP31I6lBJ4Rq9MfeMv46011us7lExORlcvZIaV2XF6COEdBEFKcgOtUJsjr_JGaKNg==", org="home")
-client = InfluxDBClient(url=host=args.INFLUXDB_HOST, token=args.INFLUXDB_TOKEN, org=args.INFLUXDB_ORG)
+client = InfluxDBClient(url=args.INFLUXDB_HOST, token=args.INFLUXDB_TOKEN, org=args.INFLUXDB_ORG)
 write_api = client.write_api(write_options=SYNCHRONOUS)
 
 # query_api = client.query_api()
