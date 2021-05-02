@@ -32,20 +32,14 @@ logging.basicConfig(stream=sys.stderr, level=logging.WARNING,
                     format='%(name)s (%(levelname)s): %(message)s')
 log.setLevel(max(3 - args.verbose_count, 0) * 10)
 
-#influx_client = InfluxDBClient(
-#    host=args.INFLUXDB_HOST,
-#    token=args.INFLUXDB_TOKEN,
-#    org=args.INFLUXDB_ORG,
-#)
-#--------------------------------------------------------------
+
 
 from influxdb_client import InfluxDBClient, Point
 from influxdb_client.client.write_api import SYNCHRONOUS
 
-#bucket = "gazpar/autogen"
 bucket = args.INFLUXDB_BUCKET
 
-# client = InfluxDBClient(url="http://192.168.1.8:8087", token="dh7nwLEm6Oky80aWPW2zcP31I6lBJ4Rq9MfeMv46011us7lExORlcvZIaV2XF6COEdBEFKcgOtUJsjr_JGaKNg==", org="home")
+
 client = InfluxDBClient(url=args.INFLUXDB_HOST, token=args.INFLUXDB_TOKEN, org=args.INFLUXDB_ORG)
 write_api = client.write_api(write_options=SYNCHRONOUS)
 
@@ -91,5 +85,5 @@ for measure in data:
         }
     })
 
-# influx_client.write_points(jsonInflux, batch_size=10)
+
 write_api.write(bucket=bucket, record=jsonInflux, batch_size=10)
