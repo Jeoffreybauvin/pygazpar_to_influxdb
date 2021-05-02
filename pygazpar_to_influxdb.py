@@ -53,22 +53,6 @@ p = Point("my_measurement").tag("location", "Prague").field("temperature", 25.3)
 
 write_api.write(bucket=bucket, record=p)
 
-## using Table structure
-tables = query_api.query('from(bucket:"my-bucket") |> range(start: -10m)')
-
-for table in tables:
-    print(table)
-    for row in table.records:
-        print (row.values)
-
-
-## using csv library
-csv_result = query_api.query_csv('from(bucket:"my-bucket") |> range(start: -10m)')
-val_count = 0
-for row in csv_result:
-    for cell in row:
-        val_count += 1
- 
 
 #------------------------------------------------- 
         
@@ -105,4 +89,5 @@ for measure in data:
         }
     })
 
-influx_client.write_points(jsonInflux, batch_size=10)
+# influx_client.write_points(jsonInflux, batch_size=10)
+write_api.write(bucket=bucket, jsonInflux, batch_size=10)
