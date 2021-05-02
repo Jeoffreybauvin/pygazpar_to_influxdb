@@ -90,4 +90,4 @@ for measure in data:
     })
 
 # influx_client.write_points(jsonInflux, batch_size=10)
-write_api.write(bucket=bucket, jsonInflux, batch_size=10)
+write_api.write(bucket=bucket, record=jsonInflux, batch_size=10)
