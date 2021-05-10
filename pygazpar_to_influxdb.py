@@ -41,13 +41,8 @@ bucket = args.INFLUXDB_BUCKET
 
 
 client = InfluxDBClient(url=args.INFLUXDB_HOST, token=args.INFLUXDB_TOKEN, org=args.INFLUXDB_ORG)
-write_api = client.write_api(write_options=SYNCHRONOUS)
-
-# query_api = client.query_api()
-
-# p = Point("my_measurement").tag("location", "Prague").field("temperature", 25.3)
-
-# write_api.write(bucket=bucket, record=p)
+#write_api = client.write_api(write_options=SYNCHRONOUS)
+write_api = client.write_api
 
 
 #------------------------------------------------- 
