@@ -35,7 +35,8 @@ log.setLevel(max(3 - args.verbose_count, 0) * 10)
 
 
 from influxdb_client import InfluxDBClient, Point
-from influxdb_client.client.write_api import SYNCHRONOUS
+#from influxdb_client.client.write_api import SYNCHRONOUS
+from influxdb_client.client.write_api
 
 bucket = args.INFLUXDB_BUCKET
 
