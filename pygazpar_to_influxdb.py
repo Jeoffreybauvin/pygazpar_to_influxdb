@@ -41,7 +41,7 @@ from influxdb_client import InfluxDBClient
 #from influxdb_client.client.write_api
 
 bucket = args.INFLUXDB_BUCKET
-org=argsINFLUXDB_ORG
+org = args.INFLUXDB_ORG
 
 influxclient = InfluxDBClient(url=args.INFLUXDB_HOST, token=args.INFLUXDB_TOKEN, org=args.INFLUXDB_ORG)
 #write_api = client.write_api(write_options=SYNCHRONOUS)
