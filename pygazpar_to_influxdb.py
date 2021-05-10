@@ -2,8 +2,8 @@
 
 import sys
 import json
-# from influxdb_client import InfluxDBClient
-#from influxdb_client import InfluxDBClient
+from influxdb_client import InfluxDBClient, Point
+from influxdb_client.client.write_api import SYNCHRONOUS
 import datetime
 import argparse
 import logging
@@ -34,19 +34,18 @@ log.setLevel(max(3 - args.verbose_count, 0) * 10)
 
 
 
-#from influxdb_client import InfluxDBClient, Point
-from influxdb_client import InfluxDBClient
 
-#from influxdb_client.client.write_api import SYNCHRONOUS
-#from influxdb_client.client.write_api
 
 bucket = args.INFLUXDB_BUCKET
+token = args.INFLUXDB_TOKEN
 org = args.INFLUXDB_ORG
 
-influxclient = InfluxDBClient(url=args.INFLUXDB_HOST, token=args.INFLUXDB_TOKEN, org=args.INFLUXDB_ORG)
-#write_api = client.write_api(write_options=SYNCHRONOUS)
+
+influxclient = InfluxDBClient(url=args.INFLUXDB_HOST, token=token, org=org)
+
+write_api = influxclient.write_api(write_options=SYNCHRONOUS)
 #write_api = client.write_api
-write_api = influxclient.write_api()
+
 
 #------------------------------------------------- 
         
@@ -85,4 +84,4 @@ for measure in data:
     })
 
 
-write_api.write(bucket=bucket, org=org, record=jsonInflux, batch_size=10)
+write_api.write(bucket=bucket, record=jsonInflux)
