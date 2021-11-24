@@ -4,11 +4,12 @@
 
 
 This repository uses [PyGazpar](https://github.com/ssenart/PyGazpar) to retrieve natural gas consumption from GrDF French provider, and push it to InfluxDB.
+It is designed in order to connect to the version 2.0 of Influx data base
 
 ## Setup
 
 There is a Docker image ready to use : https://hub.docker.com/repository/docker/pbranly/pygazpar_test
 
 ```bash
-docker run -ti  --rm -v /dev/shm:/dev/shm  pbranly/pygazpar_test:0.02  pygazpar_to_influxdb.py --influxdb-host 192.168.1.2 --influxdb-port 8086  --influxdb-username gazpar --influxdb-password PASSWORD  --influxdb-database gazpar  --pygazpar-login 'mail@gmail.com' --pygazpar-password 'password'
+docker run -ti  --rm -v /dev/shm:/dev/shm  pbranly/pygazpar_test:0.02.01 pygazpar_to_influxdb.py --influxdb2-host 192.168.1.x:8086  --influxdb2-token xxxxxxxxxxxxxxxxxxxx  --influxdb2-bucket gazpar/autogen  --influxdb2-org xxx  --pygazpar-login 'xxx@fff.fr' --pygazpar-password 'fgfgfrt' -vvv
 ```

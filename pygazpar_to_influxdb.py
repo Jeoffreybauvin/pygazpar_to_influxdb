@@ -2,7 +2,8 @@
 
 import sys
 import json
-from influxdb import InfluxDBClient
+from influxdb_client import InfluxDBClient, Point
+from influxdb_client.client.write_api import SYNCHRONOUS
 import datetime
 import argparse
 import logging
@@ -14,12 +15,13 @@ import pygazpar
 
 parser = argparse.ArgumentParser()
 
+#
+
 parser.add_argument("--source", help="Source ('json' file must be named data.json. 'pygazpar' asks to pygazpar to retrieve data)", dest="SOURCE", default="pygazpar")
-parser.add_argument("--influxdb-host", help="InfluxDB host", dest="INFLUXDB_HOST", default="influxdb-api.loc")
-parser.add_argument("--influxdb-port", help="InfluxDB port", dest="INFLUXDB_PORT", default=8086)
-parser.add_argument("--influxdb-username", help="InfluxDB username", dest="INFLUXDB_USERNAME", default="username")
-parser.add_argument("--influxdb-password", help="InfluxDB password", dest="INFLUXDB_PASSWORD", default="password")
-parser.add_argument("--influxdb-database", help="InfluxDB database", dest="INFLUXDB_DATABASE", default="enedis")
+parser.add_argument("--influxdb2-host", help="InfluxDB host", dest="INFLUXDB_HOST", default="influxdb-api.loc")
+parser.add_argument("--influxdb2-token", help="InfluxDB token", dest="INFLUXDB_TOKEN", default="xxxxx")
+parser.add_argument("--influxdb2-bucket", help="InfluxDB bucket", dest="INFLUXDB_BUCKET", default="gazpar/autogen")
+parser.add_argument("--influxdb2-org", help="InfluxDB org", dest="INFLUXDB_ORG", default="home")
 parser.add_argument("-v", "--verbose", dest="verbose_count", action="count", default=0, help="increases log verbosity")
 parser.add_argument("--pygazpar-login", dest="PYGAZPAR_LOGIN", help="pygazpar login")
 parser.add_argument("--pygazpar-password", dest="PYGAZPAR_PASSWORD", help="pygazpar password")
@@ -30,16 +32,23 @@ logging.basicConfig(stream=sys.stderr, level=logging.WARNING,
                     format='%(name)s (%(levelname)s): %(message)s')
 log.setLevel(max(3 - args.verbose_count, 0) * 10)
 
-influx_client = InfluxDBClient(
-    host=args.INFLUXDB_HOST,
-    port=args.INFLUXDB_PORT,
-    username=args.INFLUXDB_USERNAME,
-    password=args.INFLUXDB_PASSWORD,
-    database=args.INFLUXDB_DATABASE,
-    timeout=5,
-    retries=2,
-)
 
+
+
+
+bucket = args.INFLUXDB_BUCKET
+token = args.INFLUXDB_TOKEN
+org = args.INFLUXDB_ORG
+
+
+influxclient = InfluxDBClient(url=args.INFLUXDB_HOST, token=token, org=org)
+
+write_api = influxclient.write_api(write_options=SYNCHRONOUS)
+#write_api = client.write_api
+
+
+#------------------------------------------------- 
+        
 client = pygazpar.Client(args.PYGAZPAR_LOGIN,
                          args.PYGAZPAR_PASSWORD,
                          'geckodriver',
@@ -66,6 +75,7 @@ for measure in data:
             "value": measure['volume_m3'],
             "start_index_m3": measure['start_index_m3'],
             "end_index_m3": measure['end_index_m3'],
+            "volume_m3": measure['volume_m3'],
             "energy_kwh": measure['energy_kwh'],
             "converter_factor_kwh/m3": measure['converter_factor_kwh/m3'],
             "temperature_degC": measure['temperature_degC'],
@@ -73,4 +83,5 @@ for measure in data:
         }
     })
 
-influx_client.write_points(jsonInflux, batch_size=10)
+
+write_api.write(bucket=bucket, record=jsonInflux)

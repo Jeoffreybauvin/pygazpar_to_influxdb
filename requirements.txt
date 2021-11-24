@@ -1,2 +1,2 @@
-influxdb==5.3.1
+influxdb-client
 pygazpar==0.2.0
