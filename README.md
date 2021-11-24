@@ -11,5 +11,5 @@ It is designed in order to connect to the version 2.0 of Influx data base
 There is a Docker image ready to use : https://hub.docker.com/repository/docker/pbranly/pygazpar_test
 
 ```bash
-docker run -ti  --rm -v /dev/shm:/dev/shm  pbranly/pygazpar_test:0.02.01 pygazpar_to_influxdb.py --influxdb2-host 192.168.1.x:8086  --influxdb2-token xxxxxxxxxxxxxxxxxxxx  --influxdb2-bucket gazpar/autogen  --influxdb2-org xxx  --pygazpar-login 'xxx@fff.fr' --pygazpar-password 'fgfgfrt' -vvv
+docker run -ti  --rm -v /dev/shm:/dev/shm  pbranly/pygazpar_test:0.02.02 pygazpar_to_influxdb.py --influxdb2-host 192.168.1.x:8086  --influxdb2-token xxxxxxxxxxxxxxxxxxxx  --influxdb2-bucket gazpar/autogen  --influxdb2-org xxx  --pygazpar-login 'xxx@fff.fr' --pygazpar-password 'fgfgfrt' -vvv
 ```
