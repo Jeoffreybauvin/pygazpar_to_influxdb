@@ -55,22 +55,24 @@ data = client.data()
 jsonInflux = []
 
 for measure in data:
+    print(measure)
     date_time_obj = datetime.datetime.strptime(measure['time_period'], '%d/%m/%Y')
 
-    jsonInflux.append({
-        "measurement": "gazpar_consumption_per_day",
-        "tags": {
-        },
-        "time": date_time_obj.strftime('%Y-%m-%dT%H:%M:%S'),
-        "fields": {
-            "value": measure['volume_m3'],
-            "start_index_m3": measure['start_index_m3'],
-            "end_index_m3": measure['end_index_m3'],
-            "energy_kwh": measure['energy_kwh'],
-            "converter_factor_kwh/m3": measure['converter_factor_kwh/m3'],
-            "temperature_degC": measure['temperature_degC'],
-            "type": measure['type'],
-        }
-    })
+    if 'start_index_m3' in measure:
+      jsonInflux.append({
+          "measurement": "gazpar_consumption_per_day",
+          "tags": {
+          },
+          "time": date_time_obj.strftime('%Y-%m-%dT%H:%M:%S'),
+          "fields": {
+              "value": measure['volume_m3'],
+              "start_index_m3": measure['start_index_m3'],
+              "end_index_m3": measure['end_index_m3'],
+              "energy_kwh": measure['energy_kwh'],
+              "type": measure['type'],
+          }
+      })
+    else:
+      print('No measure')
 
 influx_client.write_points(jsonInflux, batch_size=10)
