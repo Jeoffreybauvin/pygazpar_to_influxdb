@@ -64,8 +64,9 @@ data = client.data()
 jsonInflux = []
 
 for measure in data:
+    print(measure)
     date_time_obj = datetime.datetime.strptime(measure['time_period'], '%d/%m/%Y')
-
+    if 'start_index_m3' in measure:
     jsonInflux.append({
         "measurement": "gazpar_consumption_per_day",
         "tags": {
@@ -80,6 +81,7 @@ for measure in data:
             "type": measure['type'],
         }
     })
-
+    else:
+      print('No measure')
 
 write_api.write(bucket=bucket, record=jsonInflux)
