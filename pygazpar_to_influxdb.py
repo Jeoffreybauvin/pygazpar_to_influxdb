@@ -24,7 +24,8 @@ parser.add_argument("--influxdb2-bucket", help="InfluxDB bucket", dest="INFLUXDB
 parser.add_argument("--influxdb2-org", help="InfluxDB org", dest="INFLUXDB_ORG", default="home")
 parser.add_argument("-v", "--verbose", dest="verbose_count", action="count", default=0, help="increases log verbosity")
 parser.add_argument("--pygazpar-login", dest="PYGAZPAR_LOGIN", help="pygazpar login")
-parser.add_argument("--pygazpar-password", dest="PYGAZPAR_PASSWORD", help="pygazpar password")
+parser.add_argument("--pygazpar-pceidentifier", dest="PCE_IDENTIFIER", help="pygazpar-pceidentifier")
+
 
 args = parser.parse_args()
 log = logging.getLogger()
@@ -51,7 +52,8 @@ write_api = influxclient.write_api(write_options=SYNCHRONOUS)
         
 client = pygazpar.Client(args.PYGAZPAR_LOGIN,
                          args.PYGAZPAR_PASSWORD,
-                         'geckodriver',
+                         args.PCE_IDENTIFIER,
+                         'Frequency.DAILY',
                          30,
                          '/tmp')
 
