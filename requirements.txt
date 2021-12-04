@@ -1,2 +1,2 @@
 influxdb-client
-pygazpar==1.0.2
+pygazpar==1.1.1
