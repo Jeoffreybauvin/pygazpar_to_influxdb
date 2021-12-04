@@ -26,6 +26,7 @@ parser.add_argument("-v", "--verbose", dest="verbose_count", action="count", def
 parser.add_argument("--pygazpar-login", dest="PYGAZPAR_LOGIN", help="pygazpar login")
 parser.add_argument("--pygazpar-password", dest="PYGAZPAR_PASSWORD", help="pygazpar password")
 parser.add_argument("--pygazpar-pceidentifier", dest="PCE_IDENTIFIER", help="pygazpar-pceidentifier")
+#parser.add_argument("--pygazpar-frequency", dest="Frequency.DAILY", help="pygazpar-frequency")
 
 
 args = parser.parse_args()
@@ -54,7 +55,7 @@ write_api = influxclient.write_api(write_options=SYNCHRONOUS)
 client = pygazpar.Client(args.PYGAZPAR_LOGIN,
                          args.PYGAZPAR_PASSWORD,
                          args.PCE_IDENTIFIER,
-                         'Frequency.DAILY',
+                         pygazpar.Frequency.DAILY,
                          30,
                          '/tmp')
 
