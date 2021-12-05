@@ -6,6 +6,8 @@
 This repository uses [PyGazpar](https://github.com/ssenart/PyGazpar) to retrieve natural gas consumption from GrDF French provider, and push it to InfluxDB.
 It is designed in order to connect to the version 2.0 of Influx data base
 
+This repository is a fork of the https://github.com/Jeoffreybauvin/pygazpar_to_influxdb dedicated version 1.8 of Influxdb
+
 A tentative configuration is described for Influxdb 1.8 but not tested
 
 ## Setup
