@@ -13,14 +13,13 @@ from decimal import Decimal
 import pygazpar
 
 
-ENV InfluxDB host_var=$influxdb2-host
-ENV InfluxDB token_var=$influxdb2-token
-ENV InfluxDB bucket_var=$influxdb2-host
-ENV InfluxDB InfluxDB bucket_var=$influxdb2-bucket
-ENV InfluxDB org_var=$influxdb2-org
-ENV InfluxDB pygazpar-login_var=$PYGAZPAR_LOGIN
-ENV InfluxDB pygazpar-password_var=$PYGAZPAR_PASSWORD
-ENV InfluxDB pygazpar-pceidentifier_var=$PCE_IDENTIFIER
+ENV InfluxDB_host_var=$pygazpar_influxdb2_host
+ENV InfluxDB_token_var=$pygazpar_influxdb2_token
+ENV InfluxDB_bucket_var=$pygazpar_influxdb2_bucket
+ENV InfluxDB_org_var=$pygazpar_influxdb2_org
+ENV InfluxDB_pygazpar-login_var=$pygazpar_PYGAZPAR_LOGIN
+ENV InfluxDB_pygazpar-password_var=$pygazpar_PYGAZPAR_PASSWORD
+ENV InfluxDB_pygazpar-pceidentifier_var=$pygazpar_PCE_IDENTIFIER
 
 
 
@@ -50,23 +49,28 @@ log.setLevel(max(3 - args.verbose_count, 0) * 10)
 
 
 
+url = InfluxDB_host_var
+bucket = InfluxDB_bucket_var
+token = InfluxDB_token_var
+org = InfluxDB_org_var
 
-bucket = args.INFLUXDB_BUCKET
-token = args.INFLUXDB_TOKEN
-org = args.INFLUXDB_ORG
 
 
-influxclient = InfluxDBClient(url=args.INFLUXDB_HOST, token=token, org=org)
+
+
+
+
+influxclient = InfluxDBClient(url=url, token=token, org=org)
 
 write_api = influxclient.write_api(write_options=SYNCHRONOUS)
-#write_api = client.write_api
+
 
 
 #------------------------------------------------- 
         
-client = pygazpar.Client(args.PYGAZPAR_LOGIN,
-                         args.PYGAZPAR_PASSWORD,
-                         args.PCE_IDENTIFIER,
+client = pygazpar.Client(InfluxDB_pygazpar-login_var,
+                         InfluxDB_pygazpar-password_var,
+                         InfluxDB_pygazpar-pceidentifier_var,
                          pygazpar.Frequency.DAILY,
                          30,
                          '/tmp')
