@@ -13,6 +13,18 @@ from decimal import Decimal
 import pygazpar
 
 
+ENV InfluxDB host_var=$influxdb2-host
+ENV InfluxDB token_var=$influxdb2-token
+ENV InfluxDB bucket_var=$influxdb2-host
+ENV InfluxDB InfluxDB bucket_var=$influxdb2-bucket
+ENV InfluxDB org_var=$influxdb2-org
+ENV InfluxDB pygazpar-login_var=$PYGAZPAR_LOGIN
+ENV InfluxDB pygazpar-password_var=$PYGAZPAR_PASSWORD
+ENV InfluxDB pygazpar-pceidentifier_var=$PCE_IDENTIFIER
+
+
+
+
 parser = argparse.ArgumentParser()
 
 #
