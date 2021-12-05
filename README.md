@@ -26,6 +26,7 @@ Docker compose part is given hereunder:
       - influxdb2
 ```     
 
+For Influxdb 2.0:
 With:
 - influxdb2-host: local ip host of your Influxdb database
 - influxdb2-token: token of your Influxdb 2.0 data base (to find in influxdb)
@@ -35,3 +36,13 @@ With:
 - pygazpar-password: password of your GRDF password
 - pygazpar-pceidentifier: Identifier opf your GRDF PCE (remove blanks)
 
+
+For Influxdb 1.8: (not tested)
+With:
+- influxdb2-host: local ip host of your Influxdb database
+- influxdb2-token: USERNAME:PASSWORD of your Influxdb 1.8 database <--------------------
+- influxdb2-bucket: DATABASE/RETENTION of your Influxdb 1.8 database. for exemple home_assistant/autogen <--------------------------
+- influxdb2-org: "-" <-------------------------------
+- pygazpar-login: login of your GRDF account
+- pygazpar-password: password of your GRDF password
+- pygazpar-pceidentifier: Identifier opf your GRDF PCE (remove blanks)
