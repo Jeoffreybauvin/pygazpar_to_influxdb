@@ -13,13 +13,16 @@ from decimal import Decimal
 import pygazpar
 
 
-ENV InfluxDB_host_var=$PYGAZPAR_INFLUXDB2_HOST
-ENV InfluxDB_token_var=$PYGAZPAR_INFLUXDB2_TOKEN
-ENV InfluxDB_bucket_var=$PYGAZPAR_INFLUXDB2_BUCKET
-ENV InfluxDB_org_var=$PYGAZPAR_INFLUXDB2_ORG
-ENV InfluxDB_pygazpar-login_var=$PYGAZPAR_PYGAZPAR_LOGIN
-ENV InfluxDB_pygazpar-password_var=$PYGAZPAR_PYGAZPAR_PASSWORD
-ENV InfluxDB_pygazpar-pceidentifier_var=$PYGAZPAR_PCE_IDENTIFIER
+import os
+print(os.environ['PYGAZPAR_INFLUXDB2_HOST'])
+print(os.environ['PYGAZPAR_INFLUXDB2_TOKEN'])
+print(os.environ['PYGAZPAR_INFLUXDB2_BUCKET'])
+print(os.environ['PYGAZPAR_INFLUXDB2_ORG'])
+print(os.environ['PYGAZPAR_PYGAZPAR_LOGIN'])
+print(os.environ['PYGAZPAR_PYGAZPAR_PASSWORD'])
+print(os.environ['PYGAZPAR_PCE_IDENTIFIER'])
+
+
 
 
 
