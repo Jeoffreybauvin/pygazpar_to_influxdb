@@ -4,6 +4,7 @@ import sys
 import json
 from influxdb_client import InfluxDBClient, Point
 from influxdb_client.client.write_api import SYNCHRONOUS
+from pygazpar.enum import Frequency
 import datetime
 import argparse
 import logging
