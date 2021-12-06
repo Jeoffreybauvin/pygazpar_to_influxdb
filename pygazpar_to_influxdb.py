@@ -62,7 +62,7 @@ log.setLevel(max(3 - args.verbose_count, 0) * 10)
 
 
 
-influxclient = InfluxDBClient(url=url, token=token, org=org)
+influxclient = InfluxDBClient(url=(url), token=(token), org=(org))
 
 write_api = influxclient.write_api(write_options=SYNCHRONOUS)
 
@@ -70,7 +70,7 @@ write_api = influxclient.write_api(write_options=SYNCHRONOUS)
 
 #------------------------------------------------- 
         
-client = pygazpar.Client(username=login, password=password, pceIdentifier=pce, meterReadingFrequency=Frequency.DAILY, lastNDays=30, tmpDirectory='/tmp')
+client = pygazpar.Client(username=(login), password=(password), pceIdentifier=(pce), meterReadingFrequency=Frequency.DAILY, lastNDays=30, tmpDirectory='/tmp')
 
 log.debug('Starting to update pygazpar data')
 client.update()
