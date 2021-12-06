@@ -33,24 +33,14 @@ print(password_pygazpar)
 print(pce_pygazpar)
 
 
-
-
-
-
 parser = argparse.ArgumentParser()
 
 #
 
 parser.add_argument("--source", help="Source ('json' file must be named data.json. 'pygazpar' asks to pygazpar to retrieve data)", dest="SOURCE", default="pygazpar")
-#parser.add_argument("--influxdb2-host", help="InfluxDB host", dest="INFLUXDB_HOST", default="influxdb-api.loc")
-#parser.add_argument("--influxdb2-token", help="InfluxDB token", dest="INFLUXDB_TOKEN", default="xxxxx")
-#parser.add_argument("--influxdb2-bucket", help="InfluxDB bucket", dest="INFLUXDB_BUCKET", default="gazpar/autogen")
-#parser.add_argument("--influxdb2-org", help="InfluxDB org", dest="INFLUXDB_ORG", default="home")
+
 parser.add_argument("-v", "--verbose", dest="verbose_count", action="count", default=0, help="increases log verbosity")
-#parser.add_argument("--pygazpar-login", dest="PYGAZPAR_LOGIN", help="pygazpar login")
-#parser.add_argument("--pygazpar-password", dest="PYGAZPAR_PASSWORD", help="pygazpar password")
-#parser.add_argument("--pygazpar-pceidentifier", dest="PCE_IDENTIFIER", help="pygazpar-pceidentifier")
-#parser.add_argument("--pygazpar-frequency", dest="Frequency.DAILY", help="pygazpar-frequency")
+
 
 
 args = parser.parse_args()
@@ -60,15 +50,10 @@ logging.basicConfig(stream=sys.stderr, level=logging.WARNING,
 log.setLevel(max(3 - args.verbose_count, 0) * 10)
 
 
-
-
-
 influxclient = InfluxDBClient(url=url_influxdb, token=token_influxdb, org=org_influxdb)
 
 
 write_api = influxclient.write_api(write_options=SYNCHRONOUS)
-
-
 
 #------------------------------------------------- 
         

@@ -18,19 +18,23 @@ Docker compose part is given hereunder:
 
 ```bash
 
-#define a pygazpar2 service
+#define a pygazpar2 service de test
 
-  pygazpar2:
-    container_name: pygazpar2
-    image: pbranly/pygazpar_to_influxdb:latest
-    command: pygazpar_to_influxdb.py --influxdb2-host 192.168.x.x:8086  --influxdb2-token xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx --influxdb2-bucket home_assistant  --influxdb2-org home  --pygazpar-login 'xxx@yy.fr' --pygazpar-password 'yyyyyyyyyy' --pygazpar-pceidentifier 12345678901234 -vvv
+  pygazpar2test:
+    container_name: pygazpar2_test
+    image: pbranly/pygazpar_to_influxdb:dev
+    env_file:
+         - .env
+    command: pygazpar_to_influxdb.py  -vvv
     depends_on:
       - influxdb2
 ```     
 
+Parameters to include in your .env file:
+
 For Influxdb 2.0:
 With:
-- PYPAZPAR_INFLUXDB2_HOST="local ip host of your Influxdb database"
+- PYPAZPAR_INFLUXDB2_HOST="local ip host of your Influxdb database:port of yourInfluxdb database" exemple: "192.168.1.20:8086"
 - PYPAZPAR_INFLUXDB2_TOKEN="token of your Influxdb 2.0 data base (to find in influxdb)"
 - PYPAZPAR_INFLUXDB2_BUCKET="name of the influxdb 2 bucket in which you want to write gazpar data"
 - PYPAZPAR_INFLUXDB2_ORG="name of your influxdb 2 organization"
@@ -40,7 +44,7 @@ With:
 
 For Influxdb 1.8: (not tested)
 With:
-- PYPAZPAR_INFLUXDB2_HOST="local ip host of your Influxdb database"
+- PYPAZPAR_INFLUXDB2_HOST="local ip host of your Influxdb database:port of yourInfluxdb database" exemple: "192.168.1.20:8086"
 - PYPAZPAR_INFLUXDB2_TOKEN="USERNAME:PASSWORD of your Influxdb 1.8 database)" <------------------
 - PYPAZPAR_INFLUXDB2_BUCKET="nDATABASE/RETENTION of your Influxdb 1.8 database. for exemple home_assistant/autogen" <--------------------------
 - PYPAZPAR_INFLUXDB2_ORG="_" <-----------------------
