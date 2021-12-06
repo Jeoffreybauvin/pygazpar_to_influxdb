@@ -20,7 +20,7 @@ tocken = os.environ['PYGAZPAR_INFLUXDB2_TOKEN']
 org = os.environ['PYGAZPAR_INFLUXDB2_ORG']
 
 login = os.environ['PYGAZPAR_PYGAZPAR_LOGIN']
-password = os.environ['PYGAZPAR_PYGAZPAR_PASSWORD'']
+password = os.environ['PYGAZPAR_PYGAZPAR_PASSWORD']
 pce = os.environ['PYGAZPAR_PCE_IDENTIFIER']
 
 print(url)
