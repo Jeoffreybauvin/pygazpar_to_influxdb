@@ -16,7 +16,7 @@ import os
 
 url = os.environ['PYGAZPAR_INFLUXDB2_HOST']
 bucket = os.environ['PYGAZPAR_INFLUXDB2_BUCKET']
-tocken = os.environ['PYGAZPAR_INFLUXDB2_TOKEN']
+token = os.environ['PYGAZPAR_INFLUXDB2_TOKEN']
 org = os.environ['PYGAZPAR_INFLUXDB2_ORG']
 
 login = os.environ['PYGAZPAR_PYGAZPAR_LOGIN']
