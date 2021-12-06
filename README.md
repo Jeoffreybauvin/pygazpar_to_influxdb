@@ -18,14 +18,13 @@ Docker compose part is given hereunder:
 
 ```bash
 
-#define a pygazpar2 service de test
+#define a pygazpar2 service sans firefox et geckodriver
 
-  pygazpar2test:
-    container_name: pygazpar2_test
-    image: pbranly/pygazpar_to_influxdb:dev
+  pygazpar2test1:
+    container_name: pygazpar2_test1
+    image: pbranly/pygazpar_to_influxdb:0.4.1
     env_file:
          - .env
-    command: pygazpar_to_influxdb.py  -vvv
     depends_on:
       - influxdb2
 ```     
