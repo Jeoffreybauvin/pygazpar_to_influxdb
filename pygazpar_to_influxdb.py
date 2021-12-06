@@ -11,16 +11,25 @@ import re
 import decimal
 from decimal import Decimal
 import pygazpar
-
-
 import os
-print(os.environ['PYGAZPAR_INFLUXDB2_HOST'])
-print(os.environ['PYGAZPAR_INFLUXDB2_TOKEN'])
-print(os.environ['PYGAZPAR_INFLUXDB2_BUCKET'])
-print(os.environ['PYGAZPAR_INFLUXDB2_ORG'])
-print(os.environ['PYGAZPAR_PYGAZPAR_LOGIN'])
-print(os.environ['PYGAZPAR_PYGAZPAR_PASSWORD'])
-print(os.environ['PYGAZPAR_PCE_IDENTIFIER'])
+
+
+url = os.environ['PYGAZPAR_INFLUXDB2_HOST']
+bucket = os.environ['PYGAZPAR_INFLUXDB2_BUCKET']
+tocken = os.environ['PYGAZPAR_INFLUXDB2_TOKEN']
+org = os.environ['PYGAZPAR_INFLUXDB2_ORG']
+
+login = os.environ['PYGAZPAR_PYGAZPAR_LOGIN']
+password = os.environ['PYGAZPAR_PYGAZPAR_PASSWORD'']
+pce = os.environ['PYGAZPAR_PCE_IDENTIFIER']
+
+print(url)
+print(bucket)
+print(token)
+print(org)
+print(login)
+print(password)
+print(pce)
 
 
 
@@ -52,16 +61,6 @@ log.setLevel(max(3 - args.verbose_count, 0) * 10)
 
 
 
-url = InfluxDB_host_var
-bucket = InfluxDB_bucket_var
-token = InfluxDB_token_var
-org = InfluxDB_org_var
-
-
-
-
-
-
 
 influxclient = InfluxDBClient(url=url, token=token, org=org)
 
@@ -71,9 +70,9 @@ write_api = influxclient.write_api(write_options=SYNCHRONOUS)
 
 #------------------------------------------------- 
         
-client = pygazpar.Client(InfluxDB_pygazpar-login_var,
-                         InfluxDB_pygazpar-password_var,
-                         InfluxDB_pygazpar-pceidentifier_var,
+client = pygazpar.Client(login,
+                         password,
+                         pce,
                          pygazpar.Frequency.DAILY,
                          30,
                          '/tmp')
