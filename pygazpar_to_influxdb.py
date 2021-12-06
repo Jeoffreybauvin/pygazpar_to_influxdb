@@ -15,22 +15,22 @@ import pygazpar
 import os
 
 
-url = os.environ['PYGAZPAR_INFLUXDB2_HOST']
-bucket = os.environ['PYGAZPAR_INFLUXDB2_BUCKET']
-token = os.environ['PYGAZPAR_INFLUXDB2_TOKEN']
-org = os.environ['PYGAZPAR_INFLUXDB2_ORG']
+url_influxdb = os.environ['PYGAZPAR_INFLUXDB2_HOST']
+bucket_influxdb = os.environ['PYGAZPAR_INFLUXDB2_BUCKET']
+token_influxdb = os.environ['PYGAZPAR_INFLUXDB2_TOKEN']
+org_influxdb = os.environ['PYGAZPAR_INFLUXDB2_ORG']
 
-login = os.environ['PYGAZPAR_PYGAZPAR_LOGIN']
-password = os.environ['PYGAZPAR_PYGAZPAR_PASSWORD']
-pce = os.environ['PYGAZPAR_PCE_IDENTIFIER']
+login_pygazpar = os.environ['PYGAZPAR_PYGAZPAR_LOGIN']
+password_pygazpar = os.environ['PYGAZPAR_PYGAZPAR_PASSWORD']
+pce_pygazpar = os.environ['PYGAZPAR_PCE_IDENTIFIER']
 
-print(url)
-print(bucket)
-print(token)
-print(org)
-print(login)
-print(password)
-print(pce)
+print(url_influxdb)
+print(bucket_influxdb)
+print(token_influxdb)
+print(org_influxdb)
+print(login_pygazpar)
+print(password_pygazpar)
+print(pce_pygazpar)
 
 
 
@@ -63,7 +63,7 @@ log.setLevel(max(3 - args.verbose_count, 0) * 10)
 
 
 
-influxclient = InfluxDBClient(url=url, token=token, org=org)
+influxclient = InfluxDBClient(url=url_influxdb, token=token_influxdb, org=org_influxdb)
 
 write_api = influxclient.write_api(write_options=SYNCHRONOUS)
 
@@ -71,7 +71,7 @@ write_api = influxclient.write_api(write_options=SYNCHRONOUS)
 
 #------------------------------------------------- 
         
-client = pygazpar.Client(username=login, password=password, pceIdentifier=pce, meterReadingFrequency=Frequency.DAILY, lastNDays=30, tmpDirectory='/tmp')
+client = pygazpar.Client(username=login_pygazpar, password=password_pygazpar, pceIdentifier=pce_pygazpar, meterReadingFrequency=Frequency.DAILY, lastNDays=30, tmpDirectory='/tmp')
 
 log.debug('Starting to update pygazpar data')
 client.update()
@@ -102,4 +102,4 @@ for measure in data:
     else:
       print('No measure')
 
-write_api.write(bucket=bucket, record=jsonInflux)
+write_api.write(bucket=bucket_influxdb, record=jsonInflux)
