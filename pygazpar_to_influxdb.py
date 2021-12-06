@@ -65,6 +65,7 @@ log.setLevel(max(3 - args.verbose_count, 0) * 10)
 
 influxclient = InfluxDBClient(url=url_influxdb, token=token_influxdb, org=org_influxdb)
 
+
 write_api = influxclient.write_api(write_options=SYNCHRONOUS)
 
 
