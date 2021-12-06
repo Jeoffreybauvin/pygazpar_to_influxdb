@@ -70,7 +70,7 @@ write_api = influxclient.write_api(write_options=SYNCHRONOUS)
 
 #------------------------------------------------- 
         
-client = pygazpar.Client(username=(login), password=(password), pceIdentifier=(pce), pygazpar.Frequency.DAILY, 30, '/tmp')
+client = pygazpar.Client(username=login, password=password, pceIdentifier=pce, pygazpar.Frequency.DAILY, 30, '/tmp')
 
 log.debug('Starting to update pygazpar data')
 client.update()
