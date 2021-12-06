@@ -63,7 +63,7 @@ log.setLevel(max(3 - args.verbose_count, 0) * 10)
 
 
 
-influxclient = InfluxDBClient(url=(url), token=(token), org=(org))
+influxclient = InfluxDBClient(url=url, token=token, org=org)
 
 write_api = influxclient.write_api(write_options=SYNCHRONOUS)
 
