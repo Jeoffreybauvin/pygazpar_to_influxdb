@@ -31,8 +31,9 @@ Docker compose part is given hereunder:
 
 In order to restart regurarly the container, add an entry in the crontab assuming that name of the container is pygazpar2:
 
-type: crontab -e
- then add:
+type:
+crontab -e
+then add:
 0 */2 * * * docker restart pygazpar2
 
 
