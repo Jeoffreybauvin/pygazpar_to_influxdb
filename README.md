@@ -22,7 +22,7 @@ Docker compose part is given hereunder:
 
   pygazpar2:
     container_name: pygazpar2
-    image: pbranly/pygazpar_to_influxdb:0.4.1
+    image: pbranly/pygazpar_to_influxdb:latest
     env_file:
          - .env
     depends_on:
