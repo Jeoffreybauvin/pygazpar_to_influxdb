@@ -45,6 +45,7 @@ With:
 - PYPAZPAR_PYGAZPAR_LOGIN="login of your GRDF account"
 - PYPAZPAR_PYGAZPAR_PASSWORD="password of your GRDF password"
 - PYPAZPAR_PCE_IDENTIFIER="Identifier opf your GRDF PCE (remove blanks)"
+- PYGAZPAR_LASTNDAY="number of days of datas " by default put 10
 
 For Influxdb 1.8: (not tested)
 With:
@@ -55,3 +56,4 @@ With:
 - PYPAZPAR_PYGAZPAR_LOGIN="login of your GRDF account"
 - PYPAZPAR_PYGAZPAR_PASSWORD="password of your GRDF password"
 - PYPAZPAR_PCE_IDENTIFIER="Identifier opf your GRDF PCE (remove blanks)"
+- PYGAZPAR_LASTNDAY="number of days of datas " by default put 10

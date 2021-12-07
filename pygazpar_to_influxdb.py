@@ -23,6 +23,7 @@ org_influxdb = os.environ['PYGAZPAR_INFLUXDB2_ORG']
 login_pygazpar = os.environ['PYGAZPAR_PYGAZPAR_LOGIN']
 password_pygazpar = os.environ['PYGAZPAR_PYGAZPAR_PASSWORD']
 pce_pygazpar = os.environ['PYGAZPAR_PCE_IDENTIFIER']
+pce_lastNDays = os.environ['PYGAZPAR_LASTNDAY']
 
 
 parser = argparse.ArgumentParser()
@@ -45,7 +46,7 @@ write_api = influxclient.write_api(write_options=SYNCHRONOUS)
 
 #------------------------------------------------- 
         
-client = pygazpar.Client(username=login_pygazpar, password=password_pygazpar, pceIdentifier=pce_pygazpar, meterReadingFrequency=Frequency.DAILY, lastNDays=100, tmpDirectory='/tmp')
+client = pygazpar.Client(username=login_pygazpar, password=password_pygazpar, pceIdentifier=pce_pygazpar, meterReadingFrequency=Frequency.DAILY, lastNDays=pce_lastNDays, tmpDirectory='/tmp')
 
 log.debug('Starting to update pygazpar data')
 client.update()
