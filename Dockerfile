@@ -1,6 +1,6 @@
 
 #FROM instrumentisto/geckodriver:latest
-FROM python:3.9.7-slim
+FROM python:3.9.9-slim
 
 RUN  apt update \
     && apt install python3 python3-pip python3-setuptools -y \
@@ -18,4 +18,4 @@ RUN pip3 install -r requirements.txt
 
 #ENTRYPOINT [ "python3" ]
 #CMD ["python3", "./pygazpar_to_influxdb.py", "--schedule", "06:00"]
-CMD ["python3", "./pygazpar_to_influxdb.py"]
+CMD ["python3", "./pygazpar_to_influxdb.py", "-vvv"]

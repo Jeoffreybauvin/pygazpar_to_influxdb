@@ -21,13 +21,18 @@ Docker compose part is given hereunder:
 #define a pygazpar2 service sans firefox et geckodriver
 
   pygazpar2test1:
-    container_name: pygazpar2_test1
+    container_name: pygazpar2
     image: pbranly/pygazpar_to_influxdb:0.4.1
     env_file:
          - .env
     depends_on:
       - influxdb2
 ```     
+
+In order to restart regurarly the container, add an entry in the crontab assuming that name of the container is pygazpar2:
+type: crontab -entry then add:
+0 */2 * * * docker restart pygazpar2
+
 
 Parameters to include in your .env file:
 

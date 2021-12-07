@@ -24,14 +24,6 @@ login_pygazpar = os.environ['PYGAZPAR_PYGAZPAR_LOGIN']
 password_pygazpar = os.environ['PYGAZPAR_PYGAZPAR_PASSWORD']
 pce_pygazpar = os.environ['PYGAZPAR_PCE_IDENTIFIER']
 
-#print(url_influxdb)
-#print(bucket_influxdb)
-#print(token_influxdb)
-#print(org_influxdb)
-#print(login_pygazpar)
-#print(password_pygazpar)
-#print(pce_pygazpar)
-
 
 parser = argparse.ArgumentParser()
 
