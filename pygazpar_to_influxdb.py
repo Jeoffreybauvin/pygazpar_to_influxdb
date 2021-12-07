@@ -27,13 +27,9 @@ pce_pygazpar = os.environ['PYGAZPAR_PCE_IDENTIFIER']
 
 parser = argparse.ArgumentParser()
 
-#
-
 parser.add_argument("--source", help="Source ('json' file must be named data.json. 'pygazpar' asks to pygazpar to retrieve data)", dest="SOURCE", default="pygazpar")
 
 parser.add_argument("-v", "--verbose", dest="verbose_count", action="count", default=0, help="increases log verbosity")
-
-
 
 args = parser.parse_args()
 log = logging.getLogger()
