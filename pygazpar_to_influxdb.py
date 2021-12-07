@@ -23,7 +23,7 @@ org_influxdb = os.environ['PYGAZPAR_INFLUXDB2_ORG']
 login_pygazpar = os.environ['PYGAZPAR_PYGAZPAR_LOGIN']
 password_pygazpar = os.environ['PYGAZPAR_PYGAZPAR_PASSWORD']
 pce_pygazpar = os.environ['PYGAZPAR_PCE_IDENTIFIER']
-pce_lastNDays = os.environ['PYGAZPAR_LASTNDAY']
+pce_lastNDays = int(os.environ['PYGAZPAR_LASTNDAY'])
 
 
 parser = argparse.ArgumentParser()
