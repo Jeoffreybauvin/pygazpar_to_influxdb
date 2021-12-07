@@ -18,33 +18,45 @@ Docker compose part is given hereunder:
 
 ```bash
 
-#define a pygazpar2 service
+#define a pygazpar2 service sans firefox et geckodriver
 
   pygazpar2:
     container_name: pygazpar2
-    image: pbranly/pygazpar_to_influxdb:latest
-    command: pygazpar_to_influxdb.py --influxdb2-host 192.168.x.x:8086  --influxdb2-token xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx --influxdb2-bucket home_assistant  --influxdb2-org home  --pygazpar-login 'xxx@yy.fr' --pygazpar-password 'yyyyyyyyyy' --pygazpar-pceidentifier 12345678901234 -vvv
+    image: pbranly/pygazpar_to_influxdb:0.4.1
+    env_file:
+         - .env
     depends_on:
       - influxdb2
 ```     
 
+In order to restart regurarly the container, add an entry in the crontab assuming that name of the container is pygazpar2:
+
+type:
+crontab -e
+then add:
+0 */2 * * * docker restart pygazpar2
+
+
+Parameters to include in your .env file:
+
 For Influxdb 2.0:
 With:
-- influxdb2-host: local ip host of your Influxdb database
-- influxdb2-token: token of your Influxdb 2.0 data base (to find in influxdb)
-- influxdb2-bucket: name of the influxdb 2 bucket in which you want to write gazpar data
-- influxdb2-org: name of your influxdb 2 organization
-- pygazpar-login: login of your GRDF account
-- pygazpar-password: password of your GRDF password
-- pygazpar-pceidentifier: Identifier opf your GRDF PCE (remove blanks)
-
+- PYPAZPAR_INFLUXDB2_HOST="local ip host of your Influxdb database:port of yourInfluxdb database" exemple: "192.168.1.20:8086"
+- PYPAZPAR_INFLUXDB2_TOKEN="token of your Influxdb 2.0 data base (to find in influxdb)"
+- PYPAZPAR_INFLUXDB2_BUCKET="name of the influxdb 2 bucket in which you want to write gazpar data"
+- PYPAZPAR_INFLUXDB2_ORG="name of your influxdb 2 organization"
+- PYPAZPAR_PYGAZPAR_LOGIN="login of your GRDF account"
+- PYPAZPAR_PYGAZPAR_PASSWORD="password of your GRDF password"
+- PYPAZPAR_PCE_IDENTIFIER="Identifier opf your GRDF PCE (remove blanks)"
+- PYGAZPAR_LASTNDAY="number of days of datas " by default put 10
 
 For Influxdb 1.8: (not tested)
 With:
-- influxdb2-host: local ip host of your Influxdb database
-- influxdb2-token: USERNAME:PASSWORD of your Influxdb 1.8 database <--------------------
-- influxdb2-bucket: DATABASE/RETENTION of your Influxdb 1.8 database. for exemple home_assistant/autogen <--------------------------
-- influxdb2-org: "-" <-------------------------------
-- pygazpar-login: login of your GRDF account
-- pygazpar-password: password of your GRDF password
-- pygazpar-pceidentifier: Identifier opf your GRDF PCE (remove blanks)
+- PYPAZPAR_INFLUXDB2_HOST="local ip host of your Influxdb database:port of yourInfluxdb database" exemple: "192.168.1.20:8086"
+- PYPAZPAR_INFLUXDB2_TOKEN="USERNAME:PASSWORD of your Influxdb 1.8 database)" <------------------
+- PYPAZPAR_INFLUXDB2_BUCKET="nDATABASE/RETENTION of your Influxdb 1.8 database. for exemple home_assistant/autogen" <--------------------------
+- PYPAZPAR_INFLUXDB2_ORG="_" <-----------------------
+- PYPAZPAR_PYGAZPAR_LOGIN="login of your GRDF account"
+- PYPAZPAR_PYGAZPAR_PASSWORD="password of your GRDF password"
+- PYPAZPAR_PCE_IDENTIFIER="Identifier opf your GRDF PCE (remove blanks)"
+- PYGAZPAR_LASTNDAY="number of days of datas " by default put 10

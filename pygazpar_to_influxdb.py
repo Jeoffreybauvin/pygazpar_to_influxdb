@@ -4,6 +4,7 @@ import sys
 import json
 from influxdb_client import InfluxDBClient, Point
 from influxdb_client.client.write_api import SYNCHRONOUS
+from pygazpar.enum import Frequency
 import datetime
 import argparse
 import logging
@@ -11,23 +12,25 @@ import re
 import decimal
 from decimal import Decimal
 import pygazpar
+import os
+
+
+url_influxdb = os.environ['PYGAZPAR_INFLUXDB2_HOST']
+bucket_influxdb = os.environ['PYGAZPAR_INFLUXDB2_BUCKET']
+token_influxdb = os.environ['PYGAZPAR_INFLUXDB2_TOKEN']
+org_influxdb = os.environ['PYGAZPAR_INFLUXDB2_ORG']
+
+login_pygazpar = os.environ['PYGAZPAR_PYGAZPAR_LOGIN']
+password_pygazpar = os.environ['PYGAZPAR_PYGAZPAR_PASSWORD']
+pce_pygazpar = os.environ['PYGAZPAR_PCE_IDENTIFIER']
+pce_lastNDays = int(os.environ['PYGAZPAR_LASTNDAY'])
 
 
 parser = argparse.ArgumentParser()
 
-#
-
 parser.add_argument("--source", help="Source ('json' file must be named data.json. 'pygazpar' asks to pygazpar to retrieve data)", dest="SOURCE", default="pygazpar")
-parser.add_argument("--influxdb2-host", help="InfluxDB host", dest="INFLUXDB_HOST", default="influxdb-api.loc")
-parser.add_argument("--influxdb2-token", help="InfluxDB token", dest="INFLUXDB_TOKEN", default="xxxxx")
-parser.add_argument("--influxdb2-bucket", help="InfluxDB bucket", dest="INFLUXDB_BUCKET", default="gazpar/autogen")
-parser.add_argument("--influxdb2-org", help="InfluxDB org", dest="INFLUXDB_ORG", default="home")
-parser.add_argument("-v", "--verbose", dest="verbose_count", action="count", default=0, help="increases log verbosity")
-parser.add_argument("--pygazpar-login", dest="PYGAZPAR_LOGIN", help="pygazpar login")
-parser.add_argument("--pygazpar-password", dest="PYGAZPAR_PASSWORD", help="pygazpar password")
-parser.add_argument("--pygazpar-pceidentifier", dest="PCE_IDENTIFIER", help="pygazpar-pceidentifier")
-#parser.add_argument("--pygazpar-frequency", dest="Frequency.DAILY", help="pygazpar-frequency")
 
+parser.add_argument("-v", "--verbose", dest="verbose_count", action="count", default=0, help="increases log verbosity")
 
 args = parser.parse_args()
 log = logging.getLogger()
@@ -36,28 +39,14 @@ logging.basicConfig(stream=sys.stderr, level=logging.WARNING,
 log.setLevel(max(3 - args.verbose_count, 0) * 10)
 
 
+influxclient = InfluxDBClient(url=url_influxdb, token=token_influxdb, org=org_influxdb)
 
-
-
-bucket = args.INFLUXDB_BUCKET
-token = args.INFLUXDB_TOKEN
-org = args.INFLUXDB_ORG
-
-
-influxclient = InfluxDBClient(url=args.INFLUXDB_HOST, token=token, org=org)
 
 write_api = influxclient.write_api(write_options=SYNCHRONOUS)
-#write_api = client.write_api
-
 
 #------------------------------------------------- 
         
-client = pygazpar.Client(args.PYGAZPAR_LOGIN,
-                         args.PYGAZPAR_PASSWORD,
-                         args.PCE_IDENTIFIER,
-                         pygazpar.Frequency.DAILY,
-                         30,
-                         '/tmp')
+client = pygazpar.Client(username=login_pygazpar, password=password_pygazpar, pceIdentifier=pce_pygazpar, meterReadingFrequency=Frequency.DAILY, lastNDays=pce_lastNDays, tmpDirectory='/tmp')
 
 log.debug('Starting to update pygazpar data')
 client.update()
@@ -88,4 +77,4 @@ for measure in data:
     else:
       print('No measure')
 
-write_api.write(bucket=bucket, record=jsonInflux)
+write_api.write(bucket=bucket_influxdb, record=jsonInflux)
