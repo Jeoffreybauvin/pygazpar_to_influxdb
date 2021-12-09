@@ -71,6 +71,7 @@ for measure in data:
             "end_index_m3": measure['end_index_m3'],
             "volume_m3": measure['volume_m3'],
             "energy_kwh": measure['energy_kwh'],
+            "converter_factor_kwh/m3": measure['converter_factor_kwh/m3'],
             "type": measure['type'],
         }
     })
