@@ -70,11 +70,11 @@ for measure in data:
         },
         "time": date_time_obj.strftime('%Y-%m-%dT%H:%M:%S'),
         "fields": {
-            "value": measure['volume_m3'],
-            "start_index_m3": measure['start_index_m3'],
-            "end_index_m3": measure['end_index_m3'],
-            "volume_m3": measure['volume_m3'],
-            "energy_kwh": measure['energy_kwh'],
+            "value": int(measure['volume_m3']),
+            "start_index_m3": int(measure['start_index_m3']),
+            "end_index_m3": int(measure['end_index_m3']),
+            "volume_m3": int(measure['volume_m3']),
+            "energy_kwh": int(measure['energy_kwh']),
             "converter_factor_kwh/m3": measure['converter_factor_kwh/m3'],
             "type": measure['type'],
         }
